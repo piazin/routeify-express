@@ -1,6 +1,6 @@
 {
   "name": "routeify-express",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Uma biblioteca npm que permite aplicar decorators a classes de controller do Express, simplificando a criação de rotas",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -18,6 +18,11 @@
     "express",
     "nodejs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piazin/routeify-express.git"
+  },
+  "homepage": "https://github.com/piazin/routeify-express#readme",
   "author": "Lucas Souza",
   "license": "ISC",
   "devDependencies": {
