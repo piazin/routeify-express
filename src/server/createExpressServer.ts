@@ -13,6 +13,7 @@ interface ExpressOptions {
  */
 export function createExpressServer(options: ExpressOptions) {
   const app = express();
+  app.use(express.json(), express.urlencoded({ extended: true }));
 
   options.controllers.forEach((controller) => {
     const routesOfController = storageControllerMetadata.get(controller.name);
