@@ -4,6 +4,8 @@ const { storageControllerMetadata } = storage;
 
 interface ExpressOptions {
   controllers: Function[];
+  globalPrefix?: string;
+  useMiddlewares?: express.RequestHandler[];
 }
 
 /**
@@ -15,12 +17,26 @@ export function createExpressServer(options: ExpressOptions) {
   const app = express();
   app.use(express.json(), express.urlencoded({ extended: true }));
 
-  options.controllers.forEach((controller) => {
+  for (const middleware of options.useMiddlewares || []) {
+    app.use(middleware);
+  }
+
+  const { controllers, globalPrefix } = options;
+  let prefix = '';
+
+  if (globalPrefix) {
+    prefix = `${globalPrefix.replace('/', '')}/`;
+  }
+
+  controllers.forEach((controller) => {
     const routesOfController = storageControllerMetadata.get(controller.name);
 
     routesOfController.forEach((routeOfController) => {
       routeOfController.routes.forEach((route) => {
-        app[route.method](`/${routeOfController.baseRouter}${route.routePath}`, route.handler);
+        app[route.method](
+          `/${prefix}${routeOfController.baseRouter}${route.routePath}`,
+          route.handler
+        );
       });
     });
   });

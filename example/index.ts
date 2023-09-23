@@ -16,6 +16,12 @@ class UserController {
 
 const app = createExpressServer({
   controllers: [UserController],
+  useMiddlewares: [
+    (req, res, next) => {
+      console.log('middleware');
+      next();
+    },
+  ],
 });
 
 app.listen(3001, () => console.log('server runing'));
