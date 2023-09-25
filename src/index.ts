@@ -1,6 +1,14 @@
-import { Controller, Get, Post, Put, Delete, Status, StatusCodes } from './decorators';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Status,
+  StatusCodes,
+  UseMiddleware,
+} from './decorators';
 import { createExpressServer } from './lib/createExpressServer';
-import { useMiddleware } from './lib/useMiddleware';
 
 export {
   Controller,
@@ -11,5 +19,5 @@ export {
   Status,
   StatusCodes,
   createExpressServer,
-  useMiddleware,
+  UseMiddleware,
 };
