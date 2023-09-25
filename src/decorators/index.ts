@@ -3,5 +3,6 @@ import { Put } from './Put';
 import { Post } from './Post';
 import { Delete } from './Delete';
 import { Controller } from './Controller';
+import { Status, StatusCodes } from './Status';
 
-export { Controller, Get, Post, Put, Delete };
+export { Controller, Get, Post, Put, Delete, Status, StatusCodes };

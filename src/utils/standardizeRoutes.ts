@@ -1,4 +1,4 @@
-export function verifyRoutePath(routePath: string) {
+export function standardizeRoutes(routePath: string) {
   if (routePath[0] !== '/') {
     routePath = `/${routePath}`;
   }

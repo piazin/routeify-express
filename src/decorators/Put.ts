@@ -1,6 +1,4 @@
-import storage from '../storagemetadata';
-const { storageMethodMetadata } = storage;
-import { verifyRoutePath } from '../utils/verifyRoutePath';
+import { applyMetadataToStorage } from 'src/utils/applyMetadataToStorage';
 
 /**
  * @description decorator for post method
@@ -9,6 +7,6 @@ import { verifyRoutePath } from '../utils/verifyRoutePath';
  */
 export function Put(routePath: string) {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
-    storageMethodMetadata.set(key, { routePath: verifyRoutePath(routePath), method: 'put' });
+    applyMetadataToStorage(key, routePath, 'put');
   };
 }
