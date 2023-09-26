@@ -38,4 +38,4 @@ const app = createExpressServer({
   globalPrefix: 'api/v1',
 });
 
-app.listen(3001, () => console.log('server runing'));
+app.listen(3000, () => console.log('server runing'));
