@@ -5,7 +5,7 @@ import { standardizeRoutes } from './standardizeRoutes';
 export function applyMetadataToStorage(
   key: string,
   routePath: string,
-  method: 'get' | 'post' | 'put' | 'delete'
+  method: 'get' | 'post' | 'put' | 'delete' | 'patch'
 ) {
   const isMethodExist = storageMethodMetadata.get(key);
   if (isMethodExist) {

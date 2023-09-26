@@ -1,12 +1,14 @@
 import express from 'express';
 import { useControllers } from './useControllers';
-import { useGlobalMiddlewares } from './useGlobalMiddlewares';
+import { useMiddlewares } from './useMiddlewares';
 import { standardizeGlobalPrefix } from 'src/utils/standardizeGlobalPrefix';
 
 interface ExpressOptions {
   controllers: Function[];
   globalPrefix?: string;
+  defaultExpressJson?: boolean;
   useGlobalMiddlewares?: express.RequestHandler[];
+  useMiddlewaresAfterAll?: express.RequestHandler[];
 }
 
 /**
@@ -16,11 +18,12 @@ interface ExpressOptions {
  */
 export function createExpressServer(options: ExpressOptions) {
   const app = express();
-  const { controllers, globalPrefix } = options;
+  const { controllers, globalPrefix, defaultExpressJson } = options;
 
-  useGlobalMiddlewares(app, options.useGlobalMiddlewares);
+  useMiddlewares({ app, middlewares: options.useGlobalMiddlewares, defaultExpressJson });
   const prefix = standardizeGlobalPrefix(globalPrefix);
   useControllers(controllers, app, prefix);
+  useMiddlewares({ app, middlewares: options.useMiddlewaresAfterAll });
 
   return app;
 }

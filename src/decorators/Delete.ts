@@ -5,7 +5,7 @@ import { applyMetadataToStorage } from 'src/utils/applyMetadataToStorage';
  * @param routePath string
  * @returns Function
  */
-export function Delete(routePath: string) {
+export function Delete(routePath: string = '') {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     applyMetadataToStorage(key, routePath, 'delete');
   };

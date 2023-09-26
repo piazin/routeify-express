@@ -18,7 +18,7 @@ import express from 'express';
  *  }
  * }
  */
-export function useMiddleware(middleware: express.RequestHandler) {
+export function UseMiddleware(middleware: express.RequestHandler) {
   return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
 

@@ -1,11 +1,18 @@
 import { Request, Response } from 'express';
-import { useMiddleware } from 'src/lib/useMiddleware';
-import { Controller, Get, Post, Status, StatusCodes, createExpressServer } from '../src';
+import {
+  Controller,
+  Get,
+  Post,
+  Status,
+  StatusCodes,
+  UseMiddleware,
+  createExpressServer,
+} from '../src';
 
 @Controller('users')
 class UserController {
   @Get()
-  @useMiddleware((req: Request, res: Response, next) => {
+  @UseMiddleware((req: Request, res: Response, next) => {
     console.log('middleware method');
     next();
   })
@@ -28,6 +35,7 @@ const app = createExpressServer({
       next();
     },
   ],
+  globalPrefix: 'api/v1',
 });
 
 app.listen(3001, () => console.log('server runing'));

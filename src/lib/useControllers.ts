@@ -13,7 +13,7 @@ export function useControllers(
     routesOfController.forEach((routeOfController) => {
       routeOfController.routes.forEach((route) => {
         app[route.method](
-          `/${prefix}${routeOfController.baseRouter}${route.routePath}`,
+          `${prefix}${routeOfController.baseRouter}${route.routePath}`,
           route.handler
         );
       });

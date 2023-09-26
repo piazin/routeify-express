@@ -2,7 +2,7 @@ import { Application } from 'express';
 
 interface RouteMetadata {
   routePath: string;
-  method: 'get' | 'post' | 'put' | 'delete';
+  method: 'get' | 'post' | 'put' | 'delete' | 'patch';
 }
 
 interface RouteMetadataMethod extends RouteMetadata {
