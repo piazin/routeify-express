@@ -1,6 +1,5 @@
 import express from 'express';
-import storagemetadata from '../storagemetadata';
-const { storageControllerMetadata } = storagemetadata;
+import { storageControllerMetadata } from '@storage';
 
 export function useControllers(
   controllers: Function[],

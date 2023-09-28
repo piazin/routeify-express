@@ -1,6 +1,5 @@
-import storage from '../storagemetadata';
-const { storageMethodMetadata } = storage;
-import { standardizeRoutes } from './standardizeRoutes';
+import { standardizeRoutes } from '@utils';
+import { storageMethodMetadata } from '@storage';
 
 export function applyMetadataToStorage(
   key: string,

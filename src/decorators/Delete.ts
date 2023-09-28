@@ -1,4 +1,4 @@
-import { applyMetadataToStorage } from 'src/utils/applyMetadataToStorage';
+import { applyMetadataToStorage } from '@utils';
 
 /**
  * @description decorator for delete method

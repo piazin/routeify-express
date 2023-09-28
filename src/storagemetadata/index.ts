@@ -1,9 +1,5 @@
-import { RouteMetadataController, RouteMetadata } from '../types';
+import storage from './storage';
 
-const storageControllerMetadata = new Map<string, RouteMetadataController[]>();
-const storageMethodMetadata = new Map<string, RouteMetadata>();
+const { storageControllerMetadata, storageMethodMetadata } = storage;
 
-export default Object.freeze({
-  storageControllerMetadata,
-  storageMethodMetadata,
-});
+export { storageControllerMetadata, storageMethodMetadata };

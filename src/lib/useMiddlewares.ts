@@ -1,12 +1,7 @@
 import express from 'express';
+import { IUseMiddlewares } from '@types';
 
-interface UseMiddlewares {
-  app: express.Application;
-  defaultExpressJson?: boolean;
-  middlewares?: express.RequestHandler[];
-}
-
-export function useMiddlewares({ app, middlewares, defaultExpressJson }: UseMiddlewares) {
+export function useMiddlewares({ app, middlewares, defaultExpressJson }: IUseMiddlewares) {
   if (defaultExpressJson) app.use(express.json(), express.urlencoded({ extended: true }));
 
   if (!middlewares) return;

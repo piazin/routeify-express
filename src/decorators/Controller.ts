@@ -1,6 +1,5 @@
-import storage from '../storagemetadata';
-import { RouteMetadataController } from '../types';
-const { storageControllerMetadata, storageMethodMetadata } = storage;
+import { IRouteMetadataController } from '@types';
+import { storageControllerMetadata, storageMethodMetadata } from '@storage';
 
 /**
  * @description decorator for controller
@@ -13,7 +12,7 @@ export function Controller(routePrefix: string) {
       (item) => item !== 'constructor'
     );
 
-    const routesOfController: RouteMetadataController[] = [];
+    const routesOfController: IRouteMetadataController[] = [];
 
     for (const propertyName of propertyNames) {
       const route = storageMethodMetadata.get(propertyName);

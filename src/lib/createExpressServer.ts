@@ -1,22 +1,15 @@
 import express from 'express';
+import { IExpressOptions } from '@types';
 import { useControllers } from './useControllers';
 import { useMiddlewares } from './useMiddlewares';
-import { standardizeGlobalPrefix } from 'src/utils/standardizeGlobalPrefix';
-
-interface ExpressOptions {
-  controllers: Function[];
-  globalPrefix?: string;
-  defaultExpressJson?: boolean;
-  useGlobalMiddlewares?: express.RequestHandler[];
-  useMiddlewaresAfterAll?: express.RequestHandler[];
-}
+import { standardizeGlobalPrefix } from '@utils';
 
 /**
  * @description create express server
  * @param options ExpressOptions
  * @returns express.Application
  */
-export function createExpressServer(options: ExpressOptions) {
+export function createExpressServer(options: IExpressOptions) {
   const app = express();
   const { controllers, globalPrefix, defaultExpressJson } = options;
 
