@@ -7,7 +7,7 @@ import {
   StatusCodes,
   UseMiddleware,
   createExpressServer,
-} from '../src';
+} from '@/index';
 
 @Controller('users')
 class UserController {
@@ -17,10 +17,10 @@ class UserController {
     next();
   })
   getUser(req: Request, res: Response) {
-    res.status(200).json({ msg: 'hello' });
+    res.send('get user');
   }
 
-  @Post('create')
+  @Post('')
   @Status(StatusCodes.CREATED)
   create(req: Request, res: Response) {
     res.send('created user');

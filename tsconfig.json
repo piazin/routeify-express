@@ -13,7 +13,8 @@
     "paths": {
       "@types": ["./src/types"],
       "@storage": ["./src/storagemetadata"],
-      "@utils": ["./src/utils"]
+      "@utils": ["./src/utils"],
+      "@/*": ["./src/*"]
     }
   }
 }

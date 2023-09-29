@@ -6,7 +6,7 @@ import { standardizeGlobalPrefix } from '@utils';
 
 /**
  * @description create express server
- * @param options ExpressOptions
+ * @param options IExpressOptions
  * @returns express.Application
  */
 export function createExpressServer(options: IExpressOptions) {
