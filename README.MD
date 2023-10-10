@@ -28,13 +28,18 @@ import { Controller, Get, Post } from 'routeify-express';
 @Controller('users')
 class UserController {
   @Get()
-  getUser(req: Request, res: Response) {
-    res.status(200).json({ msg: 'hello' });
+  findAll(req: Request, res: Response) {
+    res.status(200).send('users');
   }
 
-  @Post('create')
+  @Post()
   create(req: Request, res: Response) {
     res.status(201).send('created user');
+  }
+
+  @Delete(':id')
+  remove(req: Request, res: Response) {
+    res.status(204);
   }
 }
 ```
@@ -58,4 +63,6 @@ Com este setup, agora temos duas rotas disponíveis:
 
 - GET /users que irá chamar o método getUser do UserController.
 
-- POST /users/create que irá chamar o método create do UserController.
+- POST /users que irá chamar o método create do UserController.
+
+- DELETE /users/:id que irá chamar o método remove do UserController.
