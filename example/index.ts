@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 import {
   Controller,
   Get,
@@ -7,23 +7,23 @@ import {
   StatusCodes,
   UseMiddleware,
   createExpressServer,
-} from '@/index';
+} from "@/index";
 
-@Controller('users')
+@Controller("/users")
 class UserController {
   @Get()
   @UseMiddleware((req: Request, res: Response, next) => {
-    console.log('middleware method');
+    console.log("middleware method");
     next();
   })
   getUser(req: Request, res: Response) {
-    res.send('get user');
+    res.send("get user");
   }
 
-  @Post('')
+  @Post("")
   @Status(StatusCodes.CREATED)
   create(req: Request, res: Response) {
-    res.send('created user');
+    res.send("created user");
   }
 }
 
@@ -31,11 +31,11 @@ const app = createExpressServer({
   controllers: [UserController],
   useGlobalMiddlewares: [
     (req, res, next) => {
-      console.log('middleware');
+      console.log("middleware");
       next();
     },
   ],
-  globalPrefix: 'api/v1',
+  globalPrefix: "api/v1",
 });
 
-app.listen(3000, () => console.log('server runing'));
+app.listen(3000, () => console.log("server runing"));
