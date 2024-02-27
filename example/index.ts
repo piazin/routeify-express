@@ -1,4 +1,3 @@
-import { Request, Response } from "express";
 import {
   Controller,
   Get,
@@ -7,6 +6,8 @@ import {
   StatusCodes,
   UseMiddleware,
   createExpressServer,
+  Request,
+  Response,
 } from "@/index";
 
 @Controller("/users")
@@ -17,7 +18,9 @@ class UserController {
     next();
   })
   getUser(req: Request, res: Response) {
-    res.send("get user");
+    res.json({
+      users: [],
+    });
   }
 
   @Post("")
@@ -35,7 +38,6 @@ const app = createExpressServer({
       next();
     },
   ],
-  globalPrefix: "api/v1",
 });
 
 app.listen(3000, () => console.log("server runing"));

@@ -1,6 +1,5 @@
-import express from "express";
+import express, { Express } from "express";
 import { IExpressOptions } from "@types";
-import { Express } from "express";
 import { useControllers } from "./useControllers";
 import { useMiddlewares } from "./useMiddlewares";
 import { standardizeGlobalPrefix } from "@utils";

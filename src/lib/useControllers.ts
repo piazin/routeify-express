@@ -1,14 +1,13 @@
-import express from 'express';
-import { storageControllerMetadata } from '@storage';
+import express from "express";
+import { storageControllerMetadata } from "@storage";
 
 export function useControllers(
   controllers: Function[],
   app: express.Application,
-  prefix: string = ''
+  prefix: string = ""
 ) {
   controllers.forEach((controller) => {
     const routesOfController = storageControllerMetadata.get(controller.name);
-
     routesOfController.forEach((routeOfController) => {
       routeOfController.routes.forEach((route) => {
         app[route.method](
