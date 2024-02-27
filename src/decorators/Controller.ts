@@ -19,7 +19,7 @@ export function Controller(routePrefix?: string) {
       const route = storageMethodMetadata.get(propertyName);
       if (route) {
         const handler = target.prototype[propertyName];
-        console.info(standardizeControllerPrefix(routePrefix));
+
         routesOfController.push({
           baseRouter: standardizeControllerPrefix(routePrefix),
           routes: [{ ...route, handler }],
