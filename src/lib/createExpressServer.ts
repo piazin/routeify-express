@@ -3,6 +3,7 @@ import { IExpressOptions } from "@types";
 import { useControllers } from "./useControllers";
 import { useMiddlewares } from "./useMiddlewares";
 import { standardizeGlobalPrefix } from "@utils";
+import { notFoundResource } from "./defaultsMiddlewares";
 
 /**
  * @description create express server
@@ -11,7 +12,12 @@ import { standardizeGlobalPrefix } from "@utils";
  */
 export function createExpressServer(options: IExpressOptions): Express {
   const app = express();
-  const { controllers, globalPrefix, defaultExpressJson } = options;
+  const {
+    controllers,
+    globalPrefix,
+    defaultExpressJson,
+    useMiddlewaresAfterAll,
+  } = options;
 
   useMiddlewares({
     app,
@@ -20,7 +26,10 @@ export function createExpressServer(options: IExpressOptions): Express {
   });
   const prefix = standardizeGlobalPrefix(globalPrefix);
   useControllers(controllers, app, prefix);
-  useMiddlewares({ app, middlewares: options.useMiddlewaresAfterAll });
+
+  // default middlewares after all
+  useMiddlewares({ app, middlewares: useMiddlewaresAfterAll });
+  useMiddlewares({ app, middlewares: [notFoundResource] });
 
   return app;
 }

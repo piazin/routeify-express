@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
     "dev": "npx tsx ./example/index.ts",
     "deploy": "npm run build && npm publish --access public"
   },
