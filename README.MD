@@ -3,7 +3,7 @@
 `routeify-express` é uma biblioteca npm que simplifica a criação de rotas no Express através do uso de decorators em classes de controller.
 
 [![npm version](https://badge.fury.io/js/routeify-express.svg)](https://www.npmjs.com/package/routeify-express)
-[![Build Status](https://travis-ci.com/your-username/routeify-express.svg?branch=master)](https://travis-ci.com/your-username/routeify-express)
+[![Build Status](https://travis-ci.com/piazin/routeify-express.svg?branch=main)](https://travis-ci.com/piazin/routeify-express)
 
 ## 📦 Instalação
 
