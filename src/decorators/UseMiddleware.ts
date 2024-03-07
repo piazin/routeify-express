@@ -1,4 +1,5 @@
-import express from 'express';
+import { logger } from "@utils";
+import express from "express";
 
 /**
  * @description use middleware for controller method
@@ -6,7 +7,15 @@ import express from 'express';
  * @returns Function
  */
 export function UseMiddleware(middleware: express.RequestHandler) {
-  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  return function (
+    target: any,
+    propertyKey: string,
+    descriptor: PropertyDescriptor
+  ) {
+    logger.info(
+      `[MIDDLEWARE] ${middleware.name} [${target.constructor.name}.${propertyKey}]`
+    );
+
     const originalMethod = descriptor.value;
 
     descriptor.value = function (...args: any[]) {
