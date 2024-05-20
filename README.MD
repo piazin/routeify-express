@@ -3,7 +3,6 @@
 `routeify-express` é uma biblioteca npm que simplifica a criação de rotas no Express através do uso de decorators em classes de controller.
 
 [![npm version](https://badge.fury.io/js/routeify-express.svg)](https://www.npmjs.com/package/routeify-express)
-[![Build Status](https://travis-ci.com/piazin/routeify-express.svg?branch=main)](https://travis-ci.com/piazin/routeify-express)
 
 ## 📦 Instalação
 
@@ -13,11 +12,21 @@ Utilize o npm para instalar:
 npm install routeify-express
 ```
 
+Para poder utilizar os decorators, é necessário habilitar a opção `experimentalDecorators` no seu `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "experimentalDecorators": true
+  }
+}
+```
+
 ## 🛠 Como Usar
 
 Aqui está um exemplo básico de como usar a biblioteca:
 
-1️⃣ Criar um Controller
+**1 - Criar um Controller**
 
 `controller.ts`
 
@@ -34,7 +43,7 @@ class HelloController {
 }
 ```
 
-2️⃣ Aplicar o Controller ao seu servidor Express
+**2️ - Aplicar o Controller ao seu servidor Express**
 
 `app.ts`
 
@@ -49,10 +58,62 @@ const app = createExpressServer({
 app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
 ```
 
-Com este setup, agora temos duas rotas disponíveis:
+Com este setup, agora temos uma rota `GET /hello/world` que retorna `Hello World!`.
 
-- GET /users que irá chamar o método getUser do UserController.
+### Decorators
 
-- POST /users que irá chamar o método create do UserController.
+- `@Controller(path: string)`: Define o path base para todas as rotas do controller.
+- `@Get(path: string)`: Define uma rota `GET` para o método.
+- `@Post(path: string)`: Define uma rota `POST` para o método.
+- `@Put(path: string)`: Define uma rota `PUT` para o método.
+- `@Delete(path: string)`: Define uma rota `DELETE` para o método.
+- `@Patch(path: string)`: Define uma rota `PATCH` para o método.
+- `@Status(code: number | StatusCodes)`: Define o status code da resposta. Pode ser usado em conjunto com os decorators de rota.
+- `@UseMiddleware(middleware: RequestHandler)`: Adiciona um middleware à rota.
 
-- DELETE /users/:id que irá chamar o método remove do UserController.
+> [!TIP]
+> 💡 `StatusCodes` é um enum com os status codes HTTP mais comuns. ele pode ser importado de dentro da biblioteca.
+
+## Exeptions
+
+`BadRequestException`,
+`UnauthorizedException`,
+`ForbiddenException`,
+`NotFoundException`,
+`ConflictException`,
+`InternalServerErrorException`
+`...`
+
+Exemplo de uso:
+
+```typescript
+import { Request, Response } from "express";
+import { Controller, Get, BadRequestException } from "routeify-express";
+
+@Controller("hello")
+class HelloController {
+  @Get("world")
+  execute(req: Request, res: Response) {
+    throw new BadRequestException("Bad Request");
+  }
+}
+```
+
+Exemplo de resposta:
+
+```json
+{
+  "message": "Bad Request",
+  "status": 400
+}
+```
+
+Para mais exemplos, veja a pasta [example](https://github.com/piazin/routeify-express/tree/main/example)
+
+## 📄 Licença
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## Autores
+
+- [@piazin](https://www.github.com/piazin)
