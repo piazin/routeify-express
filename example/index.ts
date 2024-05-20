@@ -9,7 +9,9 @@ import {
   UseMiddleware,
   Put,
   Delete,
+  BodyValidator,
 } from "@/decorators";
+import { Length } from "class-validator";
 
 @Controller("/users")
 class UserController {
@@ -23,12 +25,8 @@ class UserController {
   }
 
   @Post()
+  @BodyValidator(User) // você pode usar o decorator BodyValidator para validar o corpo da requisição
   @Status(StatusCodes.CREATED) // você pode usar o decorator Status para definir o status da resposta
-  @UseMiddleware((req: Request, res: Response, next) => {
-    // você pode adicionar middlewares de metodos aqui eles serão executados antes do metodo
-    if (!req.body.name) throw new BadRequestException("Name is required");
-    next();
-  })
   createUser(req: Request, res: Response) {
     const createdUser = this.users.push({
       id: this.users.length + 1,
@@ -40,6 +38,9 @@ class UserController {
   }
 
   @Put("/:id")
+  @UseMiddleware((req, res) => {
+    if (!req.params.id) throw new BadRequestException("Id is required");
+  }) // você pode usar o decorator UseMiddleware para adicionar middlewares
   updateUser(req: Request, res: Response) {
     const id = req.params.id;
     const index = this.users.findIndex((user) => user.id === Number(id));
@@ -65,6 +66,12 @@ class UserController {
       res.end();
     }
   }
+}
+
+// para ultilizar BodyValidator você deve criar uma classe com as propriedades que deseja validar
+class User {
+  @Length(1, 20, { message: "Nome deve ter entre 3 e 20 caracteres" })
+  name: string;
 }
 
 const app = createExpressServer({

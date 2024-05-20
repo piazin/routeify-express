@@ -1,5 +1,5 @@
 import { RequestHandler, ErrorRequestHandler } from "express";
-import { StatusCodes } from "..";
+import { StatusCodes, ValidationException } from "..";
 import { logger } from "@/utils";
 import { HttpException } from "@/exceptions/http-exception";
 
@@ -18,6 +18,11 @@ export const internalServerError: ErrorRequestHandler = (
   if (err instanceof HttpException) {
     logger.error(err.message, `[${HttpException.name}]`);
     return res.status(err.statusCode).json(err.parseError());
+  }
+
+  if (err instanceof ValidationException) {
+    logger.error(err.message, `[${ValidationException.name}]`);
+    return res.status(StatusCodes.BAD_REQUEST).json(err.parseError());
   }
 
   logger.error(err.message, err.stack);

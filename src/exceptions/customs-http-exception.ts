@@ -1,3 +1,4 @@
+import { ValidationError } from "class-validator";
 import { StatusCodes } from "..";
 import { HttpException } from "./http-exception";
 import { parseExceptionName } from "@/utils/parseExceptionName";
@@ -183,5 +184,28 @@ export class TooManyRequestsException extends HttpException {
       StatusCodes.TOO_MANY_REQUESTS,
       { cause, description }
     );
+  }
+}
+
+export class ValidationException extends Error {
+  public readonly errors: ValidationError[];
+
+  constructor(errors: ValidationError[]) {
+    super();
+    this.errors = errors;
+  }
+
+  public parseError() {
+    let messages: string[];
+
+    for (const error of this.errors) {
+      messages = Object.values(error.constraints);
+    }
+
+    return {
+      statusCode: StatusCodes.BAD_REQUEST,
+      errors: "Bad Request",
+      message: messages,
+    };
   }
 }

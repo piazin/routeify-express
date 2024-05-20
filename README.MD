@@ -70,6 +70,7 @@ Com este setup, agora temos uma rota `GET /hello/world` que retorna `Hello World
 - `@Patch(path: string)`: Define uma rota `PATCH` para o método.
 - `@Status(code: number | StatusCodes)`: Define o status code da resposta. Pode ser usado em conjunto com os decorators de rota.
 - `@UseMiddleware(middleware: RequestHandler)`: Adiciona um middleware à rota.
+- `@BodyValidator(classValidator: class)`: Valida o corpo da requisição com a biblioteca `class-validator`.
 
 > [!TIP]
 > 💡 `StatusCodes` é um enum com os status codes HTTP mais comuns. ele pode ser importado de dentro da biblioteca.
