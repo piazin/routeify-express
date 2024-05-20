@@ -1,4 +1,5 @@
-import { logger } from "@utils";
+import { LoggerType } from "@/enums/logger.enum";
+import logger from "@/utils/logger";
 import express from "express";
 
 /**
@@ -13,7 +14,7 @@ export function UseMiddleware(middleware: express.RequestHandler) {
     descriptor: PropertyDescriptor
   ) {
     logger.info(
-      `[MIDDLEWARE] ${middleware.name} [${target.constructor.name}.${propertyKey}]`
+      `${LoggerType.MIDDLEWARE} ${middleware.name} [${target.constructor.name}.${propertyKey}]`
     );
 
     const originalMethod = descriptor.value;

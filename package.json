@@ -1,10 +1,24 @@
 {
   "name": "routeify-express",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Uma biblioteca npm que permite aplicar decorators a classes de controller do Express, simplificando a criação de rotas",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./exeptions": {
+      "import": "./dist/exeptions.mjs",
+      "require": "./dist/exeptions.js"
+    },
+    "./decorators": {
+      "import": "./dist/decorators.mjs",
+      "require": "./dist/decorators.js"
+    }
+  },
   "files": [
     "dist"
   ],

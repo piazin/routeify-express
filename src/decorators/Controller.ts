@@ -1,6 +1,9 @@
-import { IRouteMetadataController } from "@types";
-import { standardizeControllerPrefix } from "@/utils";
-import { storageControllerMetadata, storageMethodMetadata } from "@storage";
+import { IRouteMetadataController, NextFunction } from "@types";
+import { standardizeControllerPrefix } from "@/utils/standardizeControler";
+import {
+  storageControllerMetadata,
+  storageMethodMetadata,
+} from "@/storagemetadata";
 
 /**
  * @description decorator for controller
@@ -14,11 +17,12 @@ export function Controller(routePrefix?: string) {
     );
 
     const routesOfController: IRouteMetadataController[] = [];
+    const controllerInstance = new target();
 
     for (const propertyName of propertyNames) {
       const route = storageMethodMetadata.get(propertyName);
       if (route) {
-        const handler = target.prototype[propertyName];
+        const handler = target.prototype[propertyName].bind(controllerInstance);
 
         routesOfController.push({
           baseRouter: standardizeControllerPrefix(routePrefix),

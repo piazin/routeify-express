@@ -1,9 +1,9 @@
-import express from 'express';
+import express from "express";
 
 interface IUseMiddlewares {
   app: express.Application;
   defaultExpressJson?: boolean;
-  middlewares?: express.RequestHandler[];
+  middlewares?: express.RequestHandler[] | express.ErrorRequestHandler[];
 }
 
 export { IUseMiddlewares };

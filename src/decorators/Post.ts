@@ -1,12 +1,14 @@
-import { applyMetadataToStorage } from '@utils';
+import { applyMetadataToStorage } from "@/utils/applyMetadataToStorage";
+import { wrapWithTryCatch } from "@/utils/wrapWithTryCatch";
 
 /**
  * @description decorator for post method
  * @param routePath string
  * @returns Function
  */
-export function Post(routePath: string = '') {
+export function Post(routePath: string = "") {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
-    applyMetadataToStorage(key, routePath, 'post');
+    wrapWithTryCatch(descriptor);
+    applyMetadataToStorage(key, routePath, "post");
   };
 }

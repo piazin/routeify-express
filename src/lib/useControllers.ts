@@ -1,6 +1,6 @@
 import express from "express";
-import { storageControllerMetadata } from "../../src/storagemetadata";
-import { logger } from "@utils";
+import logger from "@/utils/logger";
+import { storageControllerMetadata } from "@/storagemetadata";
 
 export function useControllers(
   controllers: Function[],

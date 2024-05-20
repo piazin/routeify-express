@@ -1,3 +1,4 @@
+import { LoggerType } from "@/enums/logger.enum";
 import cli from "cli-color";
 
 const logger = {
@@ -12,9 +13,9 @@ const logger = {
   error: (message: string, locale?: string) => {
     const date = new Date().toLocaleTimeString();
     console.info(
-      `${cli.white(`[${date}] `)} ${cli.red(message)} origin:${cli.white(
-        locale || ""
-      )}`
+      `${cli.white(`[${date}]`)} ${cli.red(
+        LoggerType.ERROR + ": " + message
+      )}  ${locale ? "origin: " : ""}${cli.white(locale || "")}`
     );
   },
 };

@@ -1,8 +1,8 @@
-import { Application } from 'express';
+import { Application } from "express";
 
 interface IRouteMetadata {
   routePath: string;
-  method: 'get' | 'post' | 'put' | 'delete' | 'patch';
+  method: "get" | "post" | "put" | "delete" | "patch";
 }
 
 interface IRouteMetadataMethod extends IRouteMetadata {

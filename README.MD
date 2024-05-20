@@ -22,24 +22,14 @@ Aqui está um exemplo básico de como usar a biblioteca:
 `controller.ts`
 
 ```typescript
-import { Request, Response } from 'express';
-import { Controller, Get, Post } from 'routeify-express';
+import { Request, Response } from "express";
+import { Controller, Get, Post, Status, StatusCodes } from "routeify-express";
 
-@Controller('users')
-class UserController {
-  @Get()
-  findAll(req: Request, res: Response) {
-    res.status(200).send('users');
-  }
-
-  @Post()
-  create(req: Request, res: Response) {
-    res.status(201).send('created user');
-  }
-
-  @Delete(':id')
-  remove(req: Request, res: Response) {
-    res.status(204);
+@Controller("hello")
+class HelloController {
+  @Get("world")
+  execute(req: Request, res: Response) {
+    res.status(200).send("Hello World!");
   }
 }
 ```
@@ -49,14 +39,14 @@ class UserController {
 `app.ts`
 
 ```typescript
-import { createExpressServer } from 'routeify-express';
-import { UserController } from './controller.ts';
+import { createExpressServer } from "routeify-express";
+import { HelloController } from "./controller.ts";
 
 const app = createExpressServer({
-  controllers: [UserController],
+  controllers: [HelloController],
 });
 
-app.listen(3001, () => console.log('Servidor rodando na porta 3001'));
+app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
 ```
 
 Com este setup, agora temos duas rotas disponíveis:
