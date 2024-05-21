@@ -37,8 +37,8 @@ import { Controller, Get, Post, Status, StatusCodes } from "routeify-express";
 @Controller("hello")
 class HelloController {
   @Get("world")
-  execute(req: Request, res: Response) {
-    res.status(200).send("Hello World!");
+  execute() {
+    return "Hello World!";
   }
 }
 ```
