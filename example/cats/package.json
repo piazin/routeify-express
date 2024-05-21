@@ -1,0 +1,20 @@
+{
+  "name": "routeify-express-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tsx src/main.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "class-validator": "^0.14.1",
+    "routeify-express": "^2.1.2"
+  }
+}
