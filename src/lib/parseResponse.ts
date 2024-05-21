@@ -6,12 +6,18 @@ export function parseResponse(descriptor: PropertyDescriptor) {
     try {
       const result = await originalMethod.apply(this, args);
 
+      if (res.headersSent) {
+        return;
+      }
+
       if (typeof result === "object") {
         return res.json(result).end();
       }
 
       return res.send(result).end();
-    } catch (e) {}
+    } catch (err) {
+      throw err;
+    }
   };
 
   return descriptor;

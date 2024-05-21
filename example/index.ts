@@ -24,6 +24,7 @@ class UserController {
 
   @Get()
   getUser() {
+    throw new BadRequestException("Example error");
     return { users: this.users };
   }
 
