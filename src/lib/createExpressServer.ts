@@ -2,7 +2,6 @@ import express, { Express } from "express";
 import { IExpressOptions } from "@types";
 import { useControllers } from "./useControllers";
 import { useMiddlewares } from "./useMiddlewares";
-import { standardizeGlobalPrefix } from "@utils";
 import { internalServerError, notFoundResource } from "./defaultsMiddlewares";
 
 /**
@@ -24,8 +23,7 @@ export function createExpressServer(options: IExpressOptions): Express {
     middlewares: options.useGlobalMiddlewares,
     defaultExpressJson,
   });
-  const prefix = standardizeGlobalPrefix(globalPrefix);
-  useControllers(controllers, app, prefix);
+  useControllers(controllers, app, globalPrefix);
 
   // default middlewares after all
   useMiddlewares({ app, middlewares: useMiddlewaresAfterAll });
