@@ -99,7 +99,7 @@ const app = createExpressServer({
     }
   }
   ```
-- `@UseMiddleware(middleware: RequestHandler)`: Adiciona um middleware à rota.
+- `@Use(middleware: RequestHandler)`: Adiciona um middleware à rota.
 
   ```typescript
   import {
