@@ -12,6 +12,3 @@ export const standardizeFullPath = (paths: string[]): string => {
 
   return `/${standardizedPathArray.join("/")}`;
 };
-
-const result = standardizeFullPath(["api/", "/user/"]);
-console.log(result);
