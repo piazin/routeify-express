@@ -7,7 +7,7 @@ import express from "express";
  * @param middleware express.RequestHandler
  * @returns Function
  */
-export function UseMiddleware(middleware: express.RequestHandler) {
+export function Use(middleware: express.RequestHandler) {
   return function (
     target: any,
     propertyKey: string,

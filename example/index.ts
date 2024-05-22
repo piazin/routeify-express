@@ -6,7 +6,7 @@ import {
   Get,
   Post,
   Status,
-  UseMiddleware,
+  Use,
   Put,
   Delete,
   BodyValidator,
@@ -42,7 +42,7 @@ class UserController {
   }
 
   // você pode usar o decorator UseMiddleware para adicionar middlewares
-  @UseMiddleware((req, res, next) => {
+  @Use((req, res, next) => {
     if (!req.params.id) throw new BadRequestException("Example error");
     next();
   })

@@ -6,4 +6,4 @@ export * from "./Delete";
 export * from "./Controller";
 export * from "./Status";
 export * from "./BodyValidator";
-export * from "./UseMiddleware";
+export * from "./Use";
