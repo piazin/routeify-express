@@ -103,7 +103,7 @@ const app = createExpressServer({
 
   ```typescript
   import {
-    UseMiddleware,
+    Use,
     Controller,
     Get,
     Request,
@@ -118,8 +118,8 @@ const app = createExpressServer({
 
   @Controller("/users")
   class HelloController {
+    @Use(logger) // sempre ultilize o middleware antes do método
     @Get()
-    @UseMiddleware(logger)
     getUsers() {
       return "Users";
     }
