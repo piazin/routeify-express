@@ -63,6 +63,22 @@ app.listen(3001, () => console.log("Servidor rodando na porta 3001"));
 
 Com este setup, agora temos uma rota `GET /hello/world` que retorna `Hello World!`.
 
+### Inicializando o servidor
+
+Para inicializar o servidor, você precisa importar o método `createExpressServer` e passar um objeto de configuração com a lista de controllers.
+
+```typescript
+import { createExpressServer } from "routeify-express";
+import { HelloController } from "./controller.ts";
+
+const app = createExpressServer({
+  controllers: [HelloController], // Lista de controllers
+  defaultExpressJson: true, // Habilita o uso do express.json()
+  globalPrefix: "/api", // Prefixo global para todas as rotas
+  useGlobalMiddlewares: [], // Lista de middlewares globais
+}).listen(3001, () => console.log("Servidor rodando na porta 3001"));
+```
+
 ### Decorators
 
 - `@Controller(path: string)`: Marca uma classe como um controller.
@@ -193,6 +209,18 @@ Exemplo de resposta:
 - As exceções customizadas da routeify-express estendem a classe HttpException.
 - Você pode criar suas próprias exceções customizadas extendendo a classe HttpException.
 - Ao utilizar as exceções customizadas, você pode personalizar a mensagem de erro e os detalhes da resposta HTTP.
+
+## Ultilidades
+
+`logger` - Objeto com métodos para logar mensagens no console.
+
+```typescript
+import { logger } from "routeify-express";
+
+logger.info("Info message");
+logger.warn("Warning message");
+logger.error("Error message");
+```
 
 Para mais exemplos, veja a pasta [example](https://github.com/piazin/routeify-express/tree/main/example)
 
